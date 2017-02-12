@@ -1,14 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Logs</h1>
+<h1>Visit Logs</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Cookie</th>
       <th>Page</th>
       <th>When</th>
-      <th colspan="3"></th>
+
     </tr>
   </thead>
 
@@ -18,14 +18,8 @@
         <td><%= log.cookie %></td>
         <td><%= log.page %></td>
         <td><%= log.created_at %></td>
-        <td><%= link_to 'Show', log %></td>
-        <td><%= link_to 'Edit', edit_log_path(log) %></td>
-        <td><%= link_to 'Destroy', log, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Log', new_log_path %>
