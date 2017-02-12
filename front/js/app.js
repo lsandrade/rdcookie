@@ -44,8 +44,26 @@ var sendCookies = function(address){
 }
 
 var sendEmail = function(){
-  console.log(document.getElementById('email').value);
-  console.log('a')
+  if($('#email').val()!=""){
+    console.log("xyz");
+    person = {
+      contact: {
+        cookie: Cookies.get('name'),
+        email: $("#email").val()
+      }
+    };
+    $.ajax({
+          url: 'http://127.0.0.1:3000/contacts.json',
+          type: 'POST',
+          dataType: 'json',
+          success: function () {
+                window.location.href = "obrigado.html";
+          },
+          data: person
+    });
+
+  }
+
 }
 
 
@@ -53,7 +71,11 @@ return {
   init: function(address){
     verifyCookies();
     sendCookies(address);
+    $("#enviar").click(function(){
+      sendEmail();
+    });
   }
+
 }
 
 }();
