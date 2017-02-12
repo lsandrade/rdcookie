@@ -1,0 +1,2617 @@
+  [1m[36m (122.5ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (68.6ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateLogs (20170212181318)
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (116.1ms)[0m  [1mCREATE TABLE "logs" ("id" serial primary key, "cookie" text, "page" text, "when" timestamp, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20170212181318"]]
+  [1m[36m (2.0ms)[0m  [1mCOMMIT[0m
+Migrating to CreateContacts (20170212181422)
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (137.8ms)[0m  [1mCREATE TABLE "contacts" ("id" serial primary key, "cookie" text, "email" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20170212181422"]]
+  [1m[36m (2.0ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (1.0ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (3.0ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'contacts'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (3.0ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'logs'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+
+
+Started GET "/" for 127.0.0.1 at 2017-02-12 16:15:59 -0200
+  [1m[36mActiveRecord::SchemaMigration Load (3.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/railties-4.2.6/lib/rails/templates/rails/welcome/index.html.erb (24.5ms)
+Completed 200 OK in 275ms (Views: 240.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/back" for 127.0.0.1 at 2017-02-12 16:16:12 -0200
+
+ActionController::RoutingError (No route matches [GET] "/back"):
+  actionpack (4.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.5) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.5) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.6) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.5) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.5) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.6) lib/rails/engine.rb:518:in `call'
+  railties (4.2.6) lib/rails/application.rb:165:in `call'
+  rack (1.6.5) lib/rack/lock.rb:17:in `call'
+  rack (1.6.5) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.5) lib/rack/handler/webrick.rb:88:in `service'
+  C:/Ruby22-x64/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  C:/Ruby22-x64/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  C:/Ruby22-x64/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/routes/_table.html.erb (132.3ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (2583.2ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (1614.1ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (3684.4ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2017-02-12 16:16:26 -0200
+Processing by ContactsController#index as HTML
+  [1m[35mContact Load (1.0ms)[0m  SELECT "contacts".* FROM "contacts"
+  Rendered contacts/index.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 3031ms (Views: 3024.9ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/assets/scaffolds.self-544465291f3a4e1982e95304ff2a5e1d0d5810d4dd4b5094d8db5fef138f32a5.css?body=1" for 127.0.0.1 at 2017-02-12 16:16:29 -0200
+
+
+Started GET "/assets/logs.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2017-02-12 16:16:29 -0200
+
+
+Started GET "/assets/contacts.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2017-02-12 16:16:29 -0200
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for 127.0.0.1 at 2017-02-12 16:16:29 -0200
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for 127.0.0.1 at 2017-02-12 16:16:29 -0200
+
+
+Started GET "/assets/jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1" for 127.0.0.1 at 2017-02-12 16:16:29 -0200
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for 127.0.0.1 at 2017-02-12 16:16:29 -0200
+
+
+Started GET "/assets/contacts.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2017-02-12 16:16:29 -0200
+
+
+Started GET "/assets/logs.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for 127.0.0.1 at 2017-02-12 16:16:29 -0200
+
+
+Started GET "/assets/application.self-3b8dabdc891efe46b9a144b400ad69e37d7e5876bdc39dee783419a69d7ca819.js?body=1" for 127.0.0.1 at 2017-02-12 16:16:30 -0200
+
+
+Started GET "/logs" for 127.0.0.1 at 2017-02-12 16:16:36 -0200
+Processing by LogsController#index as HTML
+  [1m[36mLog Load (1.0ms)[0m  [1mSELECT "logs".* FROM "logs"[0m
+  Rendered logs/index.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 262ms (Views: 255.0ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/logs" for 127.0.0.1 at 2017-02-12 16:20:00 -0200
+Processing by LogsController#create as */*
+  Parameters: {"{\"log\":{\"cookie\":\"1234\",\"page\":\"home\"}}"=>nil}
+Can't verify CSRF token authenticity
+Completed 422 Unprocessable Entity in 1ms (ActiveRecord: 0.0ms)
+
+ActionController::InvalidAuthenticityToken (ActionController::InvalidAuthenticityToken):
+  actionpack (4.2.6) lib/action_controller/metal/request_forgery_protection.rb:181:in `handle_unverified_request'
+  actionpack (4.2.6) lib/action_controller/metal/request_forgery_protection.rb:209:in `handle_unverified_request'
+  actionpack (4.2.6) lib/action_controller/metal/request_forgery_protection.rb:204:in `verify_authenticity_token'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:432:in `block in make_lambda'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:164:in `call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:164:in `block in halting'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:504:in `block in call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:504:in `each'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.6) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.6) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.6) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.6) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.6) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.6) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.6) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.6) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.6) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.6) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.6) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.6) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.6) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.6) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:74:in `call'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.6) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.6) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.6) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  rack (1.6.5) lib/rack/etag.rb:24:in `call'
+  rack (1.6.5) lib/rack/conditionalget.rb:38:in `call'
+  rack (1.6.5) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.5) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.5) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.6) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.6) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.6) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.5) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.5) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.6) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.5) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.5) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.6) lib/rails/engine.rb:518:in `call'
+  railties (4.2.6) lib/rails/application.rb:165:in `call'
+  rack (1.6.5) lib/rack/lock.rb:17:in `call'
+  rack (1.6.5) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.5) lib/rack/handler/webrick.rb:88:in `service'
+  C:/Ruby22-x64/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  C:/Ruby22-x64/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  C:/Ruby22-x64/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (1722.4ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (1499.1ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (3467.6ms)
+
+
+Started GET "/logs" for 127.0.0.1 at 2017-02-12 16:20:26 -0200
+Processing by LogsController#index as HTML
+  [1m[35mLog Load (0.5ms)[0m  SELECT "logs".* FROM "logs"
+  Rendered logs/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 274ms (Views: 272.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/logs" for 127.0.0.1 at 2017-02-12 16:20:28 -0200
+Processing by LogsController#index as HTML
+  [1m[36mLog Load (1.0ms)[0m  [1mSELECT "logs".* FROM "logs"[0m
+  Rendered logs/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 208ms (Views: 206.8ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 16:20:43 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"1234", "page"=>"home"}}
+Can't verify CSRF token authenticity
+Completed 422 Unprocessable Entity in 1ms (ActiveRecord: 0.0ms)
+
+ActionController::InvalidAuthenticityToken (ActionController::InvalidAuthenticityToken):
+  actionpack (4.2.6) lib/action_controller/metal/request_forgery_protection.rb:181:in `handle_unverified_request'
+  actionpack (4.2.6) lib/action_controller/metal/request_forgery_protection.rb:209:in `handle_unverified_request'
+  actionpack (4.2.6) lib/action_controller/metal/request_forgery_protection.rb:204:in `verify_authenticity_token'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:432:in `block in make_lambda'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:164:in `call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:164:in `block in halting'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:504:in `block in call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:504:in `each'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.6) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.6) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.6) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.6) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.6) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.6) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.6) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.6) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.6) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.6) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.6) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.6) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.6) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.6) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:74:in `call'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.6) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.6) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.6) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  rack (1.6.5) lib/rack/etag.rb:24:in `call'
+  rack (1.6.5) lib/rack/conditionalget.rb:38:in `call'
+  rack (1.6.5) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.5) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.5) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.6) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.6) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.6) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.5) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.5) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.6) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.5) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.5) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.6) lib/rails/engine.rb:518:in `call'
+  railties (4.2.6) lib/rails/application.rb:165:in `call'
+  rack (1.6.5) lib/rack/lock.rb:17:in `call'
+  rack (1.6.5) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.5) lib/rack/handler/webrick.rb:88:in `service'
+  C:/Ruby22-x64/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  C:/Ruby22-x64/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  C:/Ruby22-x64/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (1660.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (1482.8ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (3507.4ms)
+
+
+Started GET "/logs" for 127.0.0.1 at 2017-02-12 16:21:00 -0200
+Processing by LogsController#index as HTML
+  [1m[35mLog Load (0.5ms)[0m  SELECT "logs".* FROM "logs"
+  Rendered logs/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 202ms (Views: 200.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/logs" for 127.0.0.1 at 2017-02-12 16:21:01 -0200
+Processing by LogsController#index as HTML
+  [1m[36mLog Load (0.0ms)[0m  [1mSELECT "logs".* FROM "logs"[0m
+  Rendered logs/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 181ms (Views: 179.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 16:24:28 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"cookie"=>"1234", "page"=>"home", "log"=>{"cookie"=>"1234", "page"=>"home"}}
+Can't verify CSRF token authenticity
+Completed 422 Unprocessable Entity in 1ms (ActiveRecord: 3.0ms)
+
+ActionController::InvalidAuthenticityToken (ActionController::InvalidAuthenticityToken):
+  actionpack (4.2.6) lib/action_controller/metal/request_forgery_protection.rb:181:in `handle_unverified_request'
+  actionpack (4.2.6) lib/action_controller/metal/request_forgery_protection.rb:209:in `handle_unverified_request'
+  actionpack (4.2.6) lib/action_controller/metal/request_forgery_protection.rb:204:in `verify_authenticity_token'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:432:in `block in make_lambda'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:164:in `call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:164:in `block in halting'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:504:in `block in call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:504:in `each'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.6) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.6) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.6) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.6) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.6) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.6) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.6) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.6) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.6) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.6) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.6) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.6) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.6) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.6) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:74:in `call'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.6) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.6) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.6) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  rack (1.6.5) lib/rack/etag.rb:24:in `call'
+  rack (1.6.5) lib/rack/conditionalget.rb:38:in `call'
+  rack (1.6.5) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.5) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.5) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.6) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.6) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.6) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.5) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.5) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.6) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.5) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.5) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.6) lib/rails/engine.rb:518:in `call'
+  railties (4.2.6) lib/rails/application.rb:165:in `call'
+  rack (1.6.5) lib/rack/lock.rb:17:in `call'
+  rack (1.6.5) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.5) lib/rack/handler/webrick.rb:88:in `service'
+  C:/Ruby22-x64/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  C:/Ruby22-x64/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  C:/Ruby22-x64/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (1663.3ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (1567.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (3537.1ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 16:24:57 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"1234", "page"=>"home"}}
+Can't verify CSRF token authenticity
+Completed 422 Unprocessable Entity in 3ms (ActiveRecord: 0.0ms)
+
+ActionController::InvalidAuthenticityToken (ActionController::InvalidAuthenticityToken):
+  actionpack (4.2.6) lib/action_controller/metal/request_forgery_protection.rb:181:in `handle_unverified_request'
+  actionpack (4.2.6) lib/action_controller/metal/request_forgery_protection.rb:209:in `handle_unverified_request'
+  actionpack (4.2.6) lib/action_controller/metal/request_forgery_protection.rb:204:in `verify_authenticity_token'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:432:in `block in make_lambda'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:164:in `call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:164:in `block in halting'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:504:in `block in call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:504:in `each'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.6) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.6) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.6) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.6) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.6) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.6) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.6) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.6) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.6) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.6) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.6) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.6) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.6) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.6) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:74:in `call'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:74:in `dispatch'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:43:in `serve'
+  actionpack (4.2.6) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.6) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.6) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.6) lib/action_dispatch/routing/route_set.rb:817:in `call'
+  rack (1.6.5) lib/rack/etag.rb:24:in `call'
+  rack (1.6.5) lib/rack/conditionalget.rb:38:in `call'
+  rack (1.6.5) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.5) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.5) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.6) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.6) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.6) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.6) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.6) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.3.0) lib/web_console/middleware.rb:28:in `block in call'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `catch'
+  web-console (2.3.0) lib/web_console/middleware.rb:18:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.6) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.6) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.6) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.5) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.5) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.6) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.5) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.6) lib/action_dispatch/middleware/static.rb:120:in `call'
+  rack (1.6.5) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.6) lib/rails/engine.rb:518:in `call'
+  railties (4.2.6) lib/rails/application.rb:165:in `call'
+  rack (1.6.5) lib/rack/lock.rb:17:in `call'
+  rack (1.6.5) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.5) lib/rack/handler/webrick.rb:88:in `service'
+  C:/Ruby22-x64/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  C:/Ruby22-x64/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  C:/Ruby22-x64/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (1700.1ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (1589.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (3612.2ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 16:26:54 -0200
+  [1m[36mActiveRecord::SchemaMigration Load (2.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"1234", "page"=>"home"}}
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mSQL (2.0ms)[0m  [1mINSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["cookie", "1234"], ["page", "home"], ["created_at", "2017-02-12 18:26:55.239550"], ["updated_at", "2017-02-12 18:26:55.239550"]]
+  [1m[35m (31.5ms)[0m  COMMIT
+  Rendered logs/_log.json.jbuilder (0.0ms)
+  Rendered logs/show.json.jbuilder (84.6ms)
+Completed 201 Created in 337ms (Views: 251.0ms | ActiveRecord: 42.1ms)
+
+
+Started GET "/logs" for 127.0.0.1 at 2017-02-12 16:27:08 -0200
+Processing by LogsController#index as HTML
+  [1m[36mLog Load (1.0ms)[0m  [1mSELECT "logs".* FROM "logs"[0m
+  Rendered logs/index.html.erb within layouts/application (8.5ms)
+Completed 200 OK in 453ms (Views: 451.2ms | ActiveRecord: 1.0ms)
+  [1m[36mActiveRecord::SchemaMigration Load (2.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to RemoveWhenFromLogs (20170212182904)
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36m (2.0ms)[0m  [1mALTER TABLE "logs" DROP "when"[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20170212182904"]]
+  [1m[36m (73.6ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.0ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (3.0ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'contacts'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.5ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'logs'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+
+
+Started GET "/logs" for 127.0.0.1 at 2017-02-12 16:30:31 -0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by LogsController#index as HTML
+  [1m[35mLog Load (1.0ms)[0m  SELECT "logs".* FROM "logs"
+  Rendered logs/index.html.erb within layouts/application (63.2ms)
+Completed 500 Internal Server Error in 218ms (ActiveRecord: 7.5ms)
+
+ActionView::Template::Error (undefined method `when' for #<Log:0x000000074ad330>):
+    17:       <tr>
+    18:         <td><%= log.cookie %></td>
+    19:         <td><%= log.page %></td>
+    20:         <td><%= log.when %></td>
+    21:         <td><%= link_to 'Show', log %></td>
+    22:         <td><%= link_to 'Edit', edit_log_path(log) %></td>
+    23:         <td><%= link_to 'Destroy', log, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  app/views/logs/index.html.erb:20:in `block in _app_views_logs_index_html_erb__536214520_61613400'
+  app/views/logs/index.html.erb:16:in `_app_views_logs_index_html_erb__536214520_61613400'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (1755.8ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (1689.8ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (3826.6ms)
+
+
+Started GET "/logs" for 127.0.0.1 at 2017-02-12 16:31:12 -0200
+Processing by LogsController#index as HTML
+  [1m[36mLog Load (0.5ms)[0m  [1mSELECT "logs".* FROM "logs"[0m
+  Rendered logs/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 386ms (Views: 384.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/logs" for 127.0.0.1 at 2017-02-12 16:31:31 -0200
+Processing by LogsController#index as HTML
+  [1m[35mLog Load (1.0ms)[0m  SELECT "logs".* FROM "logs"
+  Rendered logs/index.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 168ms (Views: 166.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/logs/1" for 127.0.0.1 at 2017-02-12 16:31:42 -0200
+Processing by LogsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mLog Load (1.0ms)[0m  [1mSELECT  "logs".* FROM "logs" WHERE "logs"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered logs/show.html.erb within layouts/application (68.1ms)
+Completed 500 Internal Server Error in 323ms (ActiveRecord: 1.0ms)
+
+ActionView::Template::Error (undefined method `when' for #<Log:0x0000000d2b9668>):
+    12: 
+    13: <p>
+    14:   <strong>When:</strong>
+    15:   <%= @log.when %>
+    16: </p>
+    17: 
+    18: <%= link_to 'Edit', edit_log_path(@log) %> |
+  app/views/logs/show.html.erb:15:in `_app_views_logs_show_html_erb___1678850972_45869340'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (1752.9ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (1615.4ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (3688.1ms)
+
+
+Started GET "/logs/1" for 127.0.0.1 at 2017-02-12 16:32:40 -0200
+Processing by LogsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mLog Load (0.0ms)[0m  SELECT  "logs".* FROM "logs" WHERE "logs"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered logs/show.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 192ms (Views: 189.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/logs" for 127.0.0.1 at 2017-02-12 16:32:43 -0200
+Processing by LogsController#index as HTML
+  [1m[36mLog Load (1.0ms)[0m  [1mSELECT "logs".* FROM "logs"[0m
+  Rendered logs/index.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 189ms (Views: 188.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/logs/1/edit" for 127.0.0.1 at 2017-02-12 16:32:46 -0200
+Processing by LogsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mLog Load (0.0ms)[0m  SELECT  "logs".* FROM "logs" WHERE "logs"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered logs/_form.html.erb (122.4ms)
+  Rendered logs/edit.html.erb within layouts/application (166.5ms)
+Completed 200 OK in 343ms (Views: 340.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/logs" for 127.0.0.1 at 2017-02-12 16:46:53 -0200
+Processing by LogsController#index as HTML
+  [1m[36mLog Load (1.0ms)[0m  [1mSELECT "logs".* FROM "logs"[0m
+  Rendered logs/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 165ms (Views: 163.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/logs" for 127.0.0.1 at 2017-02-12 16:46:55 -0200
+Processing by LogsController#index as HTML
+  [1m[35mLog Load (0.5ms)[0m  SELECT "logs".* FROM "logs"
+  Rendered logs/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 192ms (Views: 190.8ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 17:16:11 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"asd"=>nil}
+Completed 400 Bad Request in 10ms (ActiveRecord: 0.0ms)
+
+ActionController::ParameterMissing (param is missing or the value is empty: log):
+  app/controllers/logs_controller.rb:72:in `log_params'
+  app/controllers/logs_controller.rb:27:in `create'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (7.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (4.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (2324.3ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (1851.4ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (4193.9ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 17:59:00 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"asd"=>nil}
+Completed 400 Bad Request in 7ms (ActiveRecord: 0.0ms)
+
+ActionController::ParameterMissing (param is missing or the value is empty: log):
+  app/controllers/logs_controller.rb:72:in `log_params'
+  app/controllers/logs_controller.rb:27:in `create'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (6.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (2113.1ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (2072.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (5062.4ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:04:09 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"asd"=>nil}
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms)
+
+ActionController::ParameterMissing (param is missing or the value is empty: log):
+  app/controllers/logs_controller.rb:72:in `log_params'
+  app/controllers/logs_controller.rb:27:in `create'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.2ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (2505.1ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (1913.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (5178.7ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:04:18 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"asd"=>nil}
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms)
+
+ActionController::ParameterMissing (param is missing or the value is empty: log):
+  app/controllers/logs_controller.rb:72:in `log_params'
+  app/controllers/logs_controller.rb:27:in `create'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (1991.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (1749.7ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (4486.5ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:04:26 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"asd"=>nil}
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms)
+
+ActionController::ParameterMissing (param is missing or the value is empty: log):
+  app/controllers/logs_controller.rb:72:in `log_params'
+  app/controllers/logs_controller.rb:27:in `create'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (2271.9ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (6.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (2352.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (4701.0ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:04:35 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"asd"=>nil}
+Completed 400 Bad Request in 2ms (ActiveRecord: 0.0ms)
+
+ActionController::ParameterMissing (param is missing or the value is empty: log):
+  app/controllers/logs_controller.rb:72:in `log_params'
+  app/controllers/logs_controller.rb:27:in `create'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (2265.4ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (2194.3ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (4946.5ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:05:09 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"asd"=>nil}
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms)
+
+ActionController::ParameterMissing (param is missing or the value is empty: log):
+  app/controllers/logs_controller.rb:72:in `log_params'
+  app/controllers/logs_controller.rb:27:in `create'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (7.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (2487.1ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (2061.3ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (4973.7ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:05:42 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"asd"=>nil}
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms)
+
+ActionController::ParameterMissing (param is missing or the value is empty: log):
+  app/controllers/logs_controller.rb:72:in `log_params'
+  app/controllers/logs_controller.rb:27:in `create'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (1979.8ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (2062.6ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (4728.4ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:05:58 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"asd"=>nil}
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms)
+
+ActionController::ParameterMissing (param is missing or the value is empty: log):
+  app/controllers/logs_controller.rb:72:in `log_params'
+  app/controllers/logs_controller.rb:27:in `create'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (2152.4ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (2077.3ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (4700.9ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:06:07 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"asd"=>nil}
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms)
+
+ActionController::ParameterMissing (param is missing or the value is empty: log):
+  app/controllers/logs_controller.rb:72:in `log_params'
+  app/controllers/logs_controller.rb:27:in `create'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (2669.8ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (1864.1ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (4296.7ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:06:49 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"asd"=>nil}
+Completed 400 Bad Request in 2ms (ActiveRecord: 0.0ms)
+
+ActionController::ParameterMissing (param is missing or the value is empty: log):
+  app/controllers/logs_controller.rb:72:in `log_params'
+  app/controllers/logs_controller.rb:27:in `create'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (2435.1ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (2004.6ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (4627.8ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:06:59 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"home"}
+Completed 400 Bad Request in 1ms (ActiveRecord: 0.0ms)
+
+ActionController::ParameterMissing (param is missing or the value is empty: log):
+  app/controllers/logs_controller.rb:72:in `log_params'
+  app/controllers/logs_controller.rb:27:in `create'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (3.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (2047.6ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (2417.8ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (4927.3ms)
+
+
+Started GET "/logs" for 127.0.0.1 at 2017-02-12 18:07:09 -0200
+Processing by LogsController#index as HTML
+  [1m[36mLog Load (1.0ms)[0m  [1mSELECT "logs".* FROM "logs"[0m
+  Rendered logs/index.html.erb within layouts/application (6.5ms)
+Completed 200 OK in 334ms (Views: 322.5ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:08:13 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"logs"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"home"}}
+Completed 400 Bad Request in 2ms (ActiveRecord: 0.0ms)
+
+ActionController::ParameterMissing (param is missing or the value is empty: log):
+  app/controllers/logs_controller.rb:72:in `log_params'
+  app/controllers/logs_controller.rb:27:in `create'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (2256.7ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (1708.3ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (3887.1ms)
+
+
+Started GET "/logs" for 127.0.0.1 at 2017-02-12 18:08:48 -0200
+Processing by LogsController#index as HTML
+  [1m[35mLog Load (0.0ms)[0m  SELECT "logs".* FROM "logs"
+  Rendered logs/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 257ms (Views: 256.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:09:04 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"home"}}
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (2.0ms)[0m  INSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "home"], ["created_at", "2017-02-12 20:09:04.298890"], ["updated_at", "2017-02-12 20:09:04.298890"]]
+  [1m[36m (65.0ms)[0m  [1mCOMMIT[0m
+  Rendered logs/_log.json.jbuilder (84.1ms)
+  Rendered logs/show.json.jbuilder (101.1ms)
+Completed 500 Internal Server Error in 474ms (ActiveRecord: 68.0ms)
+
+ActionView::Template::Error (undefined method `when' for #<Log:0x0000000b9437d8>):
+    1: json.extract! log, :id, :cookie, :page, :when, :created_at, :updated_at
+    2: json.url log_url(log, format: :json)
+  app/views/logs/_log.json.jbuilder:1:in `_app_views_logs__log_json_jbuilder__942848211_96951500'
+  app/views/logs/show.json.jbuilder:1:in `_app_views_logs_show_json_jbuilder___1430953882_97091180'
+  app/controllers/logs_controller.rb:32:in `block (2 levels) in create'
+  app/controllers/logs_controller.rb:29:in `create'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (6.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (2207.7ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (1831.7ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (3941.7ms)
+
+
+Started GET "/logs" for 127.0.0.1 at 2017-02-12 18:34:19 -0200
+Processing by LogsController#index as HTML
+  [1m[35mLog Load (1.0ms)[0m  SELECT "logs".* FROM "logs"
+  Rendered logs/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 180ms (Views: 176.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/logs" for 127.0.0.1 at 2017-02-12 18:34:24 -0200
+Processing by LogsController#index as HTML
+  [1m[36mLog Load (0.5ms)[0m  [1mSELECT "logs".* FROM "logs"[0m
+  Rendered logs/index.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 171ms (Views: 169.8ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:34:28 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"home"}}
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "home"], ["created_at", "2017-02-12 20:34:28.742505"], ["updated_at", "2017-02-12 20:34:28.742505"]]
+  [1m[35m (2.0ms)[0m  COMMIT
+  Rendered logs/_log.json.jbuilder (69.1ms)
+  Rendered logs/show.json.jbuilder (84.1ms)
+Completed 500 Internal Server Error in 293ms (ActiveRecord: 2.0ms)
+
+ActionView::Template::Error (undefined method `when' for #<Log:0x000000078d2690>):
+    1: json.extract! log, :id, :cookie, :page, :when, :created_at, :updated_at
+    2: json.url log_url(log, format: :json)
+  app/views/logs/_log.json.jbuilder:1:in `_app_views_logs__log_json_jbuilder__942848211_96951500'
+  app/views/logs/show.json.jbuilder:1:in `_app_views_logs_show_json_jbuilder___1430953882_97091180'
+  app/controllers/logs_controller.rb:32:in `block (2 levels) in create'
+  app/controllers/logs_controller.rb:29:in `create'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (1892.7ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.4ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (1670.4ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (3775.0ms)
+
+
+Started GET "/logs" for 127.0.0.1 at 2017-02-12 18:34:36 -0200
+Processing by LogsController#index as HTML
+  [1m[36mLog Load (1.0ms)[0m  [1mSELECT "logs".* FROM "logs"[0m
+  Rendered logs/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 172ms (Views: 170.0ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:36:49 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"preco"}}
+  [1m[35m (1.0ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "preco"], ["created_at", "2017-02-12 20:36:49.200309"], ["updated_at", "2017-02-12 20:36:49.200309"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  Rendered logs/_log.json.jbuilder (53.0ms)
+  Rendered logs/show.json.jbuilder (72.1ms)
+Completed 500 Internal Server Error in 258ms (ActiveRecord: 3.0ms)
+
+ActionView::Template::Error (undefined method `when' for #<Log:0x0000000968ba88>):
+    1: json.extract! log, :id, :cookie, :page, :when, :created_at, :updated_at
+    2: json.url log_url(log, format: :json)
+  app/views/logs/_log.json.jbuilder:1:in `_app_views_logs__log_json_jbuilder__942848211_96951500'
+  app/views/logs/show.json.jbuilder:1:in `_app_views_logs_show_json_jbuilder___1430953882_97091180'
+  app/controllers/logs_controller.rb:32:in `block (2 levels) in create'
+  app/controllers/logs_controller.rb:29:in `create'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (1773.1ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (1568.9ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (3806.5ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:36:56 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"contato"}}
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "contato"], ["created_at", "2017-02-12 20:36:56.670548"], ["updated_at", "2017-02-12 20:36:56.670548"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  Rendered logs/_log.json.jbuilder (44.0ms)
+  Rendered logs/show.json.jbuilder (56.5ms)
+Completed 500 Internal Server Error in 230ms (ActiveRecord: 2.0ms)
+
+ActionView::Template::Error (undefined method `when' for #<Log:0x0000000cb55e08>):
+    1: json.extract! log, :id, :cookie, :page, :when, :created_at, :updated_at
+    2: json.url log_url(log, format: :json)
+  app/views/logs/_log.json.jbuilder:1:in `_app_views_logs__log_json_jbuilder__942848211_96951500'
+  app/views/logs/show.json.jbuilder:1:in `_app_views_logs_show_json_jbuilder___1430953882_97091180'
+  app/controllers/logs_controller.rb:32:in `block (2 levels) in create'
+  app/controllers/logs_controller.rb:29:in `create'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (1762.4ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (1568.4ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (3574.8ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:37:06 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"contato"}}
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "contato"], ["created_at", "2017-02-12 20:37:06.932945"], ["updated_at", "2017-02-12 20:37:06.932945"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  Rendered logs/_log.json.jbuilder (47.0ms)
+  Rendered logs/show.json.jbuilder (61.0ms)
+Completed 500 Internal Server Error in 317ms (ActiveRecord: 2.0ms)
+
+ActionView::Template::Error (undefined method `when' for #<Log:0x0000000cf5abc0>):
+    1: json.extract! log, :id, :cookie, :page, :when, :created_at, :updated_at
+    2: json.url log_url(log, format: :json)
+  app/views/logs/_log.json.jbuilder:1:in `_app_views_logs__log_json_jbuilder__942848211_96951500'
+  app/views/logs/show.json.jbuilder:1:in `_app_views_logs_show_json_jbuilder___1430953882_97091180'
+  app/controllers/logs_controller.rb:32:in `block (2 levels) in create'
+  app/controllers/logs_controller.rb:29:in `create'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (1841.3ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (1876.6ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (3970.9ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:37:14 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"sobre"}}
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "sobre"], ["created_at", "2017-02-12 20:37:14.398134"], ["updated_at", "2017-02-12 20:37:14.398134"]]
+  [1m[36m (3.0ms)[0m  [1mCOMMIT[0m
+  Rendered logs/_log.json.jbuilder (38.0ms)
+  Rendered logs/show.json.jbuilder (50.5ms)
+Completed 500 Internal Server Error in 278ms (ActiveRecord: 5.0ms)
+
+ActionView::Template::Error (undefined method `when' for #<Log:0x00000004324ae8>):
+    1: json.extract! log, :id, :cookie, :page, :when, :created_at, :updated_at
+    2: json.url log_url(log, format: :json)
+  app/views/logs/_log.json.jbuilder:1:in `_app_views_logs__log_json_jbuilder__942848211_96951500'
+  app/views/logs/show.json.jbuilder:1:in `_app_views_logs_show_json_jbuilder___1430953882_97091180'
+  app/controllers/logs_controller.rb:32:in `block (2 levels) in create'
+  app/controllers/logs_controller.rb:29:in `create'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (7.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (1727.6ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (1599.4ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (3635.5ms)
+
+
+Started GET "/logs" for 127.0.0.1 at 2017-02-12 18:37:21 -0200
+Processing by LogsController#index as HTML
+  [1m[35mLog Load (1.0ms)[0m  SELECT "logs".* FROM "logs"
+  Rendered logs/index.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 177ms (Views: 175.1ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:37:42 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"contato"}}
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "contato"], ["created_at", "2017-02-12 20:37:42.815559"], ["updated_at", "2017-02-12 20:37:42.815559"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  Rendered logs/_log.json.jbuilder (45.3ms)
+  Rendered logs/show.json.jbuilder (61.8ms)
+Completed 500 Internal Server Error in 273ms (ActiveRecord: 1.0ms)
+
+ActionView::Template::Error (undefined method `when' for #<Log:0x00000005c51a98>):
+    1: json.extract! log, :id, :cookie, :page, :when, :created_at, :updated_at
+    2: json.url log_url(log, format: :json)
+  app/views/logs/_log.json.jbuilder:1:in `_app_views_logs__log_json_jbuilder__942848211_96951500'
+  app/views/logs/show.json.jbuilder:1:in `_app_views_logs_show_json_jbuilder___1430953882_97091180'
+  app/controllers/logs_controller.rb:32:in `block (2 levels) in create'
+  app/controllers/logs_controller.rb:29:in `create'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (7.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (2020.9ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (1551.7ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (3541.9ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:37:56 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"contato"}}
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "contato"], ["created_at", "2017-02-12 20:37:57.001181"], ["updated_at", "2017-02-12 20:37:57.001181"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  Rendered logs/_log.json.jbuilder (56.5ms)
+  Rendered logs/show.json.jbuilder (73.1ms)
+Completed 500 Internal Server Error in 265ms (ActiveRecord: 2.0ms)
+
+ActionView::Template::Error (undefined method `when' for #<Log:0x0000000baf4b90>):
+    1: json.extract! log, :id, :cookie, :page, :when, :created_at, :updated_at
+    2: json.url log_url(log, format: :json)
+  app/views/logs/_log.json.jbuilder:1:in `_app_views_logs__log_json_jbuilder__942848211_96951500'
+  app/views/logs/show.json.jbuilder:1:in `_app_views_logs_show_json_jbuilder___1430953882_97091180'
+  app/controllers/logs_controller.rb:32:in `block (2 levels) in create'
+  app/controllers/logs_controller.rb:29:in `create'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (1823.4ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (1586.2ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (3694.0ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:38:05 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"contato"}}
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "contato"], ["created_at", "2017-02-12 20:38:05.403147"], ["updated_at", "2017-02-12 20:38:05.403147"]]
+  [1m[36m (35.9ms)[0m  [1mCOMMIT[0m
+  Rendered logs/_log.json.jbuilder (63.0ms)
+  Rendered logs/show.json.jbuilder (83.1ms)
+Completed 500 Internal Server Error in 362ms (ActiveRecord: 35.9ms)
+
+ActionView::Template::Error (undefined method `when' for #<Log:0x0000000d064430>):
+    1: json.extract! log, :id, :cookie, :page, :when, :created_at, :updated_at
+    2: json.url log_url(log, format: :json)
+  app/views/logs/_log.json.jbuilder:1:in `_app_views_logs__log_json_jbuilder__942848211_96951500'
+  app/views/logs/show.json.jbuilder:1:in `_app_views_logs_show_json_jbuilder___1430953882_97091180'
+  app/controllers/logs_controller.rb:32:in `block (2 levels) in create'
+  app/controllers/logs_controller.rb:29:in `create'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (1655.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (2020.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (4364.0ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:42:58 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"contato"}}
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "contato"], ["created_at", "2017-02-12 20:42:58.630352"], ["updated_at", "2017-02-12 20:42:58.630352"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  Rendered logs/_log.json.jbuilder (49.0ms)
+  Rendered logs/show.json.jbuilder (63.0ms)
+Completed 500 Internal Server Error in 261ms (ActiveRecord: 2.0ms)
+
+ActionView::Template::Error (undefined method `when' for #<Log:0x0000000d300fe0>):
+    1: json.extract! log, :id, :cookie, :page, :when, :created_at, :updated_at
+    2: json.url log_url(log, format: :json)
+  app/views/logs/_log.json.jbuilder:1:in `_app_views_logs__log_json_jbuilder__942848211_96951500'
+  app/views/logs/show.json.jbuilder:1:in `_app_views_logs_show_json_jbuilder___1430953882_97091180'
+  app/controllers/logs_controller.rb:32:in `block (2 levels) in create'
+  app/controllers/logs_controller.rb:29:in `create'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (1805.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (1595.7ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (3865.4ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:43:05 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"contato"}}
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "contato"], ["created_at", "2017-02-12 20:43:05.882723"], ["updated_at", "2017-02-12 20:43:05.882723"]]
+  [1m[36m (0.0ms)[0m  [1mCOMMIT[0m
+  Rendered logs/_log.json.jbuilder (44.0ms)
+  Rendered logs/show.json.jbuilder (56.0ms)
+Completed 500 Internal Server Error in 252ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (undefined method `when' for #<Log:0x00000003e58460>):
+    1: json.extract! log, :id, :cookie, :page, :when, :created_at, :updated_at
+    2: json.url log_url(log, format: :json)
+  app/views/logs/_log.json.jbuilder:1:in `_app_views_logs__log_json_jbuilder__942848211_96951500'
+  app/views/logs/show.json.jbuilder:1:in `_app_views_logs_show_json_jbuilder___1430953882_97091180'
+  app/controllers/logs_controller.rb:32:in `block (2 levels) in create'
+  app/controllers/logs_controller.rb:29:in `create'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (1992.1ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (2232.9ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (4426.4ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:43:45 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"contato"}}
+  [1m[35m (1.0ms)[0m  BEGIN
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "contato"], ["created_at", "2017-02-12 20:43:45.840444"], ["updated_at", "2017-02-12 20:43:45.840444"]]
+  [1m[35m (4.0ms)[0m  COMMIT
+  Rendered logs/_log.json.jbuilder (50.8ms)
+  Rendered logs/show.json.jbuilder (67.8ms)
+Completed 500 Internal Server Error in 278ms (ActiveRecord: 5.0ms)
+
+ActionView::Template::Error (undefined method `when' for #<Log:0x0000000988d818>):
+    1: json.extract! log, :id, :cookie, :page, :when, :created_at, :updated_at
+    2: json.url log_url(log, format: :json)
+  app/views/logs/_log.json.jbuilder:1:in `_app_views_logs__log_json_jbuilder__942848211_96951500'
+  app/views/logs/show.json.jbuilder:1:in `_app_views_logs_show_json_jbuilder___1430953882_97091180'
+  app/controllers/logs_controller.rb:32:in `block (2 levels) in create'
+  app/controllers/logs_controller.rb:29:in `create'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (1883.1ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (1596.4ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (3862.2ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:43:53 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"contato"}}
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "contato"], ["created_at", "2017-02-12 20:43:53.203727"], ["updated_at", "2017-02-12 20:43:53.203727"]]
+  [1m[36m (0.0ms)[0m  [1mCOMMIT[0m
+  Rendered logs/_log.json.jbuilder (40.5ms)
+  Rendered logs/show.json.jbuilder (52.0ms)
+Completed 500 Internal Server Error in 231ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (undefined method `when' for #<Log:0x0000000c7b4448>):
+    1: json.extract! log, :id, :cookie, :page, :when, :created_at, :updated_at
+    2: json.url log_url(log, format: :json)
+  app/views/logs/_log.json.jbuilder:1:in `_app_views_logs__log_json_jbuilder__942848211_96951500'
+  app/views/logs/show.json.jbuilder:1:in `_app_views_logs_show_json_jbuilder___1430953882_97091180'
+  app/controllers/logs_controller.rb:32:in `block (2 levels) in create'
+  app/controllers/logs_controller.rb:29:in `create'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (1975.9ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (1702.6ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (4078.6ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:44:32 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"contato"}}
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "contato"], ["created_at", "2017-02-12 20:44:32.075248"], ["updated_at", "2017-02-12 20:44:32.075248"]]
+  [1m[35m (5.0ms)[0m  COMMIT
+  Rendered logs/_log.json.jbuilder (68.5ms)
+  Rendered logs/show.json.jbuilder (92.1ms)
+Completed 500 Internal Server Error in 353ms (ActiveRecord: 5.0ms)
+
+ActionView::Template::Error (undefined method `when' for #<Log:0x0000000d39e358>):
+    1: json.extract! log, :id, :cookie, :page, :when, :created_at, :updated_at
+    2: json.url log_url(log, format: :json)
+  app/views/logs/_log.json.jbuilder:1:in `_app_views_logs__log_json_jbuilder__942848211_96951500'
+  app/views/logs/show.json.jbuilder:1:in `_app_views_logs_show_json_jbuilder___1430953882_97091180'
+  app/controllers/logs_controller.rb:32:in `block (2 levels) in create'
+  app/controllers/logs_controller.rb:29:in `create'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (7.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (1778.8ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (1999.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (4064.0ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:44:51 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"contato"}}
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "contato"], ["created_at", "2017-02-12 20:44:51.354117"], ["updated_at", "2017-02-12 20:44:51.354117"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  Rendered logs/_log.json.jbuilder (52.0ms)
+  Rendered logs/show.json.jbuilder (68.1ms)
+Completed 500 Internal Server Error in 293ms (ActiveRecord: 2.0ms)
+
+ActionView::Template::Error (undefined method `when' for #<Log:0x0000000cc27f20>):
+    1: json.extract! log, :id, :cookie, :page, :when, :created_at, :updated_at
+    2: json.url log_url(log, format: :json)
+  app/views/logs/_log.json.jbuilder:1:in `_app_views_logs__log_json_jbuilder__942848211_96951500'
+  app/views/logs/show.json.jbuilder:1:in `_app_views_logs_show_json_jbuilder___1430953882_97091180'
+  app/controllers/logs_controller.rb:32:in `block (2 levels) in create'
+  app/controllers/logs_controller.rb:29:in `create'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (1951.8ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (1632.4ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (3856.3ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:44:58 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"contato"}}
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "contato"], ["created_at", "2017-02-12 20:44:58.900188"], ["updated_at", "2017-02-12 20:44:58.900188"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  Rendered logs/_log.json.jbuilder (43.0ms)
+  Rendered logs/show.json.jbuilder (55.1ms)
+Completed 500 Internal Server Error in 202ms (ActiveRecord: 1.0ms)
+
+ActionView::Template::Error (undefined method `when' for #<Log:0x00000006f00e28>):
+    1: json.extract! log, :id, :cookie, :page, :when, :created_at, :updated_at
+    2: json.url log_url(log, format: :json)
+  app/views/logs/_log.json.jbuilder:1:in `_app_views_logs__log_json_jbuilder__942848211_96951500'
+  app/views/logs/show.json.jbuilder:1:in `_app_views_logs_show_json_jbuilder___1430953882_97091180'
+  app/controllers/logs_controller.rb:32:in `block (2 levels) in create'
+  app/controllers/logs_controller.rb:29:in `create'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (1863.8ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (1767.6ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (3896.3ms)
+
+
+Started POST "/contacts.json" for 127.0.0.1 at 2017-02-12 18:46:29 -0200
+Processing by ContactsController#create as JSON
+  Parameters: {"contact"=>{"cookie"=>"1234", "email"=>"abc@email.com"}}
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (2.0ms)[0m  INSERT INTO "contacts" ("cookie", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["cookie", "1234"], ["email", "abc@email.com"], ["created_at", "2017-02-12 20:46:29.360433"], ["updated_at", "2017-02-12 20:46:29.360433"]]
+  [1m[36m (20.0ms)[0m  [1mCOMMIT[0m
+  Rendered contacts/_contact.json.jbuilder (1.0ms)
+  Rendered contacts/show.json.jbuilder (49.5ms)
+Completed 201 Created in 284ms (Views: 245.0ms | ActiveRecord: 25.0ms)
+
+
+Started GET "/logs" for 127.0.0.1 at 2017-02-12 18:46:37 -0200
+Processing by LogsController#index as HTML
+  [1m[35mLog Load (0.5ms)[0m  SELECT "logs".* FROM "logs"
+  Rendered logs/index.html.erb within layouts/application (11.4ms)
+Completed 200 OK in 191ms (Views: 190.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2017-02-12 18:46:49 -0200
+Processing by ContactsController#index as HTML
+  [1m[36mContact Load (1.0ms)[0m  [1mSELECT "contacts".* FROM "contacts"[0m
+  Rendered contacts/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 197ms (Views: 195.3ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:48:25 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"contato"}}
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "contato"], ["created_at", "2017-02-12 20:48:25.598222"], ["updated_at", "2017-02-12 20:48:25.598222"]]
+  [1m[35m (49.0ms)[0m  COMMIT
+  Rendered logs/_log.json.jbuilder (78.6ms)
+  Rendered logs/show.json.jbuilder (100.1ms)
+Completed 500 Internal Server Error in 432ms (ActiveRecord: 50.0ms)
+
+ActionView::Template::Error (undefined method `when' for #<Log:0x0000000cef2818>):
+    1: json.extract! log, :id, :cookie, :page, :when, :created_at, :updated_at
+    2: json.url log_url(log, format: :json)
+  app/views/logs/_log.json.jbuilder:1:in `_app_views_logs__log_json_jbuilder__942848211_96951500'
+  app/views/logs/show.json.jbuilder:1:in `_app_views_logs_show_json_jbuilder___1430953882_97091180'
+  app/controllers/logs_controller.rb:32:in `block (2 levels) in create'
+  app/controllers/logs_controller.rb:29:in `create'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (16.7ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (2379.2ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (2353.8ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (5035.8ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:48:35 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"contato"}}
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "contato"], ["created_at", "2017-02-12 20:48:35.141213"], ["updated_at", "2017-02-12 20:48:35.141213"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  Rendered logs/_log.json.jbuilder (50.0ms)
+  Rendered logs/show.json.jbuilder (62.5ms)
+Completed 500 Internal Server Error in 248ms (ActiveRecord: 1.0ms)
+
+ActionView::Template::Error (undefined method `when' for #<Log:0x0000000d1ed220>):
+    1: json.extract! log, :id, :cookie, :page, :when, :created_at, :updated_at
+    2: json.url log_url(log, format: :json)
+  app/views/logs/_log.json.jbuilder:1:in `_app_views_logs__log_json_jbuilder__942848211_96951500'
+  app/views/logs/show.json.jbuilder:1:in `_app_views_logs_show_json_jbuilder___1430953882_97091180'
+  app/controllers/logs_controller.rb:32:in `block (2 levels) in create'
+  app/controllers/logs_controller.rb:29:in `create'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (7.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (1918.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (1777.4ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (4056.2ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2017-02-12 18:49:05 -0200
+Processing by ContactsController#index as HTML
+  [1m[35mContact Load (0.5ms)[0m  SELECT "contacts".* FROM "contacts"
+  Rendered contacts/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 296ms (Views: 295.4ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:50:11 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"contato"}}
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "contato"], ["created_at", "2017-02-12 20:50:11.966873"], ["updated_at", "2017-02-12 20:50:11.966873"]]
+  [1m[36m (19.0ms)[0m  [1mCOMMIT[0m
+  Rendered logs/_log.json.jbuilder (73.1ms)
+  Rendered logs/show.json.jbuilder (90.1ms)
+Completed 500 Internal Server Error in 390ms (ActiveRecord: 21.0ms)
+
+ActionView::Template::Error (undefined method `when' for #<Log:0x0000000d417500>):
+    1: json.extract! log, :id, :cookie, :page, :when, :created_at, :updated_at
+    2: json.url log_url(log, format: :json)
+  app/views/logs/_log.json.jbuilder:1:in `_app_views_logs__log_json_jbuilder__942848211_96951500'
+  app/views/logs/show.json.jbuilder:1:in `_app_views_logs_show_json_jbuilder___1430953882_97091180'
+  app/controllers/logs_controller.rb:32:in `block (2 levels) in create'
+  app/controllers/logs_controller.rb:29:in `create'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (2011.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (2053.8ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (4767.5ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:51:19 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"contato"}}
+  [1m[35m (1.0ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "contato"], ["created_at", "2017-02-12 20:51:19.071014"], ["updated_at", "2017-02-12 20:51:19.071014"]]
+  [1m[35m (8.0ms)[0m  COMMIT
+  Rendered logs/_log.json.jbuilder (0.0ms)
+  Rendered logs/show.json.jbuilder (14.0ms)
+Completed 201 Created in 252ms (Views: 239.5ms | ActiveRecord: 10.0ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2017-02-12 18:51:33 -0200
+Processing by ContactsController#index as HTML
+  [1m[36mContact Load (1.0ms)[0m  [1mSELECT "contacts".* FROM "contacts"[0m
+  Rendered contacts/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 230ms (Views: 228.1ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:52:38 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"contato"}}
+  [1m[35m (1.0ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "contato"], ["created_at", "2017-02-12 20:52:38.969600"], ["updated_at", "2017-02-12 20:52:38.969600"]]
+  [1m[35m (63.1ms)[0m  COMMIT
+  Rendered logs/_log.json.jbuilder (0.0ms)
+  Rendered logs/show.json.jbuilder (32.0ms)
+Completed 201 Created in 352ms (Views: 282.0ms | ActiveRecord: 65.1ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:53:56 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"contato"}}
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "contato"], ["created_at", "2017-02-12 20:53:56.281630"], ["updated_at", "2017-02-12 20:53:56.281630"]]
+  [1m[36m (20.0ms)[0m  [1mCOMMIT[0m
+  Rendered logs/_log.json.jbuilder (0.5ms)
+  Rendered logs/show.json.jbuilder (36.0ms)
+Completed 201 Created in 280ms (Views: 252.4ms | ActiveRecord: 20.0ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:54:01 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"contato"}}
+  [1m[35m (1.0ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "contato"], ["created_at", "2017-02-12 20:54:01.674142"], ["updated_at", "2017-02-12 20:54:01.674142"]]
+  [1m[35m (5.0ms)[0m  COMMIT
+  Rendered logs/_log.json.jbuilder (0.0ms)
+  Rendered logs/show.json.jbuilder (15.0ms)
+Completed 201 Created in 236ms (Views: 225.2ms | ActiveRecord: 7.0ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:54:10 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"contato"}}
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "contato"], ["created_at", "2017-02-12 20:54:10.404266"], ["updated_at", "2017-02-12 20:54:10.404266"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  Rendered logs/_log.json.jbuilder (0.0ms)
+  Rendered logs/show.json.jbuilder (12.0ms)
+Completed 201 Created in 224ms (Views: 219.5ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2017-02-12 18:55:02 -0200
+Processing by ContactsController#index as HTML
+  [1m[35mContact Load (0.5ms)[0m  SELECT "contacts".* FROM "contacts"
+  Rendered contacts/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 234ms (Views: 232.8ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:55:07 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"contato"}}
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "contato"], ["created_at", "2017-02-12 20:55:07.557795"], ["updated_at", "2017-02-12 20:55:07.557795"]]
+  [1m[36m (1.1ms)[0m  [1mCOMMIT[0m
+  Rendered logs/_log.json.jbuilder (0.0ms)
+  Rendered logs/show.json.jbuilder (30.0ms)
+Completed 201 Created in 387ms (Views: 380.7ms | ActiveRecord: 1.6ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:55:17 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"contato"}}
+  [1m[35m (1.0ms)[0m  BEGIN
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "contato"], ["created_at", "2017-02-12 20:55:17.749197"], ["updated_at", "2017-02-12 20:55:17.749197"]]
+  [1m[35m (0.0ms)[0m  COMMIT
+  Rendered logs/_log.json.jbuilder (1.0ms)
+  Rendered logs/show.json.jbuilder (16.0ms)
+Completed 201 Created in 293ms (Views: 286.9ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:55:42 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"contato"}}
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "contato"], ["created_at", "2017-02-12 20:55:42.404925"], ["updated_at", "2017-02-12 20:55:42.404925"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  Rendered logs/_log.json.jbuilder (0.0ms)
+  Rendered logs/show.json.jbuilder (16.0ms)
+Completed 201 Created in 283ms (Views: 273.5ms | ActiveRecord: 1.5ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:55:47 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"contato"}}
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "contato"], ["created_at", "2017-02-12 20:55:47.721263"], ["updated_at", "2017-02-12 20:55:47.721263"]]
+  [1m[35m (50.1ms)[0m  COMMIT
+  Rendered logs/_log.json.jbuilder (0.0ms)
+  Rendered logs/show.json.jbuilder (19.0ms)
+Completed 201 Created in 311ms (Views: 250.0ms | ActiveRecord: 51.1ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:56:55 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"contato"}}
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "contato"], ["created_at", "2017-02-12 20:56:55.448136"], ["updated_at", "2017-02-12 20:56:55.448136"]]
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  Rendered logs/_log.json.jbuilder (1.0ms)
+  Rendered logs/show.json.jbuilder (16.0ms)
+Completed 201 Created in 277ms (Views: 271.2ms | ActiveRecord: 1.5ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:57:00 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"contato"}}
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "contato"], ["created_at", "2017-02-12 20:57:00.945279"], ["updated_at", "2017-02-12 20:57:00.945279"]]
+  [1m[35m (4.5ms)[0m  COMMIT
+  Rendered logs/_log.json.jbuilder (0.0ms)
+  Rendered logs/show.json.jbuilder (20.0ms)
+Completed 201 Created in 333ms (Views: 322.4ms | ActiveRecord: 5.0ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2017-02-12 18:57:23 -0200
+Processing by ContactsController#index as HTML
+  [1m[36mContact Load (0.0ms)[0m  [1mSELECT "contacts".* FROM "contacts"[0m
+  Rendered contacts/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 185ms (Views: 184.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2017-02-12 18:57:25 -0200
+Processing by ContactsController#index as HTML
+  [1m[35mContact Load (0.0ms)[0m  SELECT "contacts".* FROM "contacts"
+  Rendered contacts/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 207ms (Views: 206.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:58:21 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"contato"}}
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "contato"], ["created_at", "2017-02-12 20:58:21.543185"], ["updated_at", "2017-02-12 20:58:21.543185"]]
+  [1m[36m (6.0ms)[0m  [1mCOMMIT[0m
+  Rendered logs/_log.json.jbuilder (0.0ms)
+  Rendered logs/show.json.jbuilder (27.0ms)
+Completed 201 Created in 328ms (Views: 314.2ms | ActiveRecord: 6.0ms)
+
+
+Started POST "/contacts.json" for 127.0.0.1 at 2017-02-12 18:58:28 -0200
+Processing by ContactsController#create as JSON
+  Parameters: {"contact"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "email"=>"asd@gmail.com"}}
+  [1m[35m (1.0ms)[0m  BEGIN
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "contacts" ("cookie", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["email", "asd@gmail.com"], ["created_at", "2017-02-12 20:58:28.119109"], ["updated_at", "2017-02-12 20:58:28.119109"]]
+  [1m[35m (5.5ms)[0m  COMMIT
+  Rendered contacts/_contact.json.jbuilder (0.0ms)
+  Rendered contacts/show.json.jbuilder (16.0ms)
+Completed 201 Created in 187ms (Views: 173.7ms | ActiveRecord: 6.5ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2017-02-12 18:58:45 -0200
+Processing by ContactsController#index as HTML
+  [1m[36mContact Load (1.0ms)[0m  [1mSELECT "contacts".* FROM "contacts"[0m
+  Rendered contacts/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 248ms (Views: 245.8ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 18:59:56 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"contato"}}
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "contato"], ["created_at", "2017-02-12 20:59:56.510193"], ["updated_at", "2017-02-12 20:59:56.510193"]]
+  [1m[35m (1.5ms)[0m  COMMIT
+  Rendered logs/_log.json.jbuilder (1.0ms)
+  Rendered logs/show.json.jbuilder (20.0ms)
+Completed 201 Created in 290ms (Views: 283.1ms | ActiveRecord: 2.5ms)
+
+
+Started POST "/contacts.json" for 127.0.0.1 at 2017-02-12 18:59:59 -0200
+Processing by ContactsController#create as JSON
+  Parameters: {"contact"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "email"=>"asd@gmail.com"}}
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "contacts" ("cookie", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["email", "asd@gmail.com"], ["created_at", "2017-02-12 21:00:00.001501"], ["updated_at", "2017-02-12 21:00:00.001501"]]
+  [1m[36m (4.0ms)[0m  [1mCOMMIT[0m
+  Rendered contacts/_contact.json.jbuilder (1.0ms)
+  Rendered contacts/show.json.jbuilder (13.0ms)
+Completed 201 Created in 187ms (Views: 176.3ms | ActiveRecord: 5.0ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 19:00:04 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"contato"}}
+  [1m[35m (1.0ms)[0m  BEGIN
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "contato"], ["created_at", "2017-02-12 21:00:04.900965"], ["updated_at", "2017-02-12 21:00:04.900965"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  Rendered logs/_log.json.jbuilder (1.0ms)
+  Rendered logs/show.json.jbuilder (19.0ms)
+Completed 201 Created in 273ms (Views: 267.5ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/contacts.json" for 127.0.0.1 at 2017-02-12 19:00:06 -0200
+Processing by ContactsController#create as JSON
+  Parameters: {"contact"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "email"=>"asd@gmail.com"}}
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "contacts" ("cookie", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["email", "asd@gmail.com"], ["created_at", "2017-02-12 21:00:06.713848"], ["updated_at", "2017-02-12 21:00:06.713848"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  Rendered contacts/_contact.json.jbuilder (0.0ms)
+  Rendered contacts/show.json.jbuilder (13.0ms)
+Completed 201 Created in 198ms (Views: 190.7ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2017-02-12 19:00:13 -0200
+Processing by ContactsController#index as HTML
+  [1m[35mContact Load (1.0ms)[0m  SELECT "contacts".* FROM "contacts"
+  Rendered contacts/index.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 239ms (Views: 238.0ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 19:02:08 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"contato"}}
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "contato"], ["created_at", "2017-02-12 21:02:08.518817"], ["updated_at", "2017-02-12 21:02:08.518817"]]
+  [1m[36m (18.0ms)[0m  [1mCOMMIT[0m
+  Rendered logs/_log.json.jbuilder (0.5ms)
+  Rendered logs/show.json.jbuilder (23.0ms)
+Completed 201 Created in 295ms (Views: 269.8ms | ActiveRecord: 19.0ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 19:02:10 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"sobre"}}
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "sobre"], ["created_at", "2017-02-12 21:02:10.247744"], ["updated_at", "2017-02-12 21:02:10.247744"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  Rendered logs/_log.json.jbuilder (0.0ms)
+  Rendered logs/show.json.jbuilder (22.0ms)
+Completed 201 Created in 350ms (Views: 321.8ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 19:02:16 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"home"}}
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "home"], ["created_at", "2017-02-12 21:02:16.283795"], ["updated_at", "2017-02-12 21:02:16.283795"]]
+  [1m[36m (5.0ms)[0m  [1mCOMMIT[0m
+  Rendered logs/_log.json.jbuilder (0.0ms)
+  Rendered logs/show.json.jbuilder (19.5ms)
+Completed 201 Created in 289ms (Views: 276.9ms | ActiveRecord: 6.0ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2017-02-12 19:02:18 -0200
+Processing by ContactsController#index as HTML
+  [1m[35mContact Load (0.0ms)[0m  SELECT "contacts".* FROM "contacts"
+  Rendered contacts/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 239ms (Views: 237.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2017-02-12 19:02:20 -0200
+Processing by ContactsController#index as HTML
+  [1m[36mContact Load (0.0ms)[0m  [1mSELECT "contacts".* FROM "contacts"[0m
+  Rendered contacts/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 225ms (Views: 223.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 19:02:26 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"contato"}}
+  [1m[35m (2.0ms)[0m  BEGIN
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "contato"], ["created_at", "2017-02-12 21:02:26.627467"], ["updated_at", "2017-02-12 21:02:26.627467"]]
+  [1m[35m (2.0ms)[0m  COMMIT
+  Rendered logs/_log.json.jbuilder (1.0ms)
+  Rendered logs/show.json.jbuilder (17.5ms)
+Completed 201 Created in 266ms (Views: 257.6ms | ActiveRecord: 4.0ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 19:02:39 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"sobre"}}
+  [1m[36m (0.5ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  INSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "sobre"], ["created_at", "2017-02-12 21:02:39.226336"], ["updated_at", "2017-02-12 21:02:39.226336"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  Rendered logs/_log.json.jbuilder (0.0ms)
+  Rendered logs/show.json.jbuilder (17.0ms)
+Completed 201 Created in 280ms (Views: 272.0ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2017-02-12 19:02:41 -0200
+Processing by ContactsController#index as HTML
+  [1m[35mContact Load (1.0ms)[0m  SELECT "contacts".* FROM "contacts"
+  Rendered contacts/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 247ms (Views: 244.9ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 19:03:05 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"sobre"}}
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "sobre"], ["created_at", "2017-02-12 21:03:05.305113"], ["updated_at", "2017-02-12 21:03:05.305113"]]
+  [1m[36m (46.1ms)[0m  [1mCOMMIT[0m
+  Rendered logs/_log.json.jbuilder (0.5ms)
+  Rendered logs/show.json.jbuilder (19.0ms)
+Completed 201 Created in 389ms (Views: 337.6ms | ActiveRecord: 47.1ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 19:03:06 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"contato"}}
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "contato"], ["created_at", "2017-02-12 21:03:06.711582"], ["updated_at", "2017-02-12 21:03:06.711582"]]
+  [1m[35m (2.0ms)[0m  COMMIT
+  Rendered logs/_log.json.jbuilder (0.0ms)
+  Rendered logs/show.json.jbuilder (15.0ms)
+Completed 201 Created in 334ms (Views: 325.1ms | ActiveRecord: 2.5ms)
+
+
+Started POST "/contacts.json" for 127.0.0.1 at 2017-02-12 19:03:12 -0200
+Processing by ContactsController#create as JSON
+  Parameters: {"contact"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "email"=>"asd@gmail.com"}}
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "contacts" ("cookie", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["email", "asd@gmail.com"], ["created_at", "2017-02-12 21:03:12.078023"], ["updated_at", "2017-02-12 21:03:12.078023"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  Rendered contacts/_contact.json.jbuilder (0.0ms)
+  Rendered contacts/show.json.jbuilder (15.0ms)
+Completed 201 Created in 212ms (Views: 204.7ms | ActiveRecord: 3.0ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2017-02-12 19:03:18 -0200
+Processing by ContactsController#index as HTML
+  [1m[35mContact Load (0.0ms)[0m  SELECT "contacts".* FROM "contacts"
+  Rendered contacts/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 196ms (Views: 194.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 19:04:18 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"contato"}}
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "contato"], ["created_at", "2017-02-12 21:04:18.432870"], ["updated_at", "2017-02-12 21:04:18.432870"]]
+  [1m[36m (66.1ms)[0m  [1mCOMMIT[0m
+  Rendered logs/_log.json.jbuilder (1.0ms)
+  Rendered logs/show.json.jbuilder (14.0ms)
+Completed 201 Created in 348ms (Views: 276.6ms | ActiveRecord: 67.1ms)
+
+
+Started POST "/contacts.json" for 127.0.0.1 at 2017-02-12 19:04:21 -0200
+Processing by ContactsController#create as JSON
+  Parameters: {"contact"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "email"=>"asd@gmail.com"}}
+  [1m[35m (1.0ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "contacts" ("cookie", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["email", "asd@gmail.com"], ["created_at", "2017-02-12 21:04:22.010028"], ["updated_at", "2017-02-12 21:04:22.010028"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  Rendered contacts/_contact.json.jbuilder (1.0ms)
+  Rendered contacts/show.json.jbuilder (12.0ms)
+Completed 201 Created in 192ms (Views: 183.5ms | ActiveRecord: 3.0ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 19:04:43 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"contato"}}
+  [1m[36m (1.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "contato"], ["created_at", "2017-02-12 21:04:43.983285"], ["updated_at", "2017-02-12 21:04:43.983285"]]
+  [1m[36m (100.1ms)[0m  [1mCOMMIT[0m
+  Rendered logs/_log.json.jbuilder (0.0ms)
+  Rendered logs/show.json.jbuilder (45.0ms)
+Completed 201 Created in 398ms (Views: 291.7ms | ActiveRecord: 102.1ms)
+
+
+Started POST "/contacts.json" for 127.0.0.1 at 2017-02-12 19:04:45 -0200
+Processing by ContactsController#create as JSON
+  Parameters: {"contact"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "email"=>"asd@gmail.com"}}
+  [1m[35m (1.0ms)[0m  BEGIN
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "contacts" ("cookie", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["email", "asd@gmail.com"], ["created_at", "2017-02-12 21:04:45.828458"], ["updated_at", "2017-02-12 21:04:45.828458"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  Rendered contacts/_contact.json.jbuilder (0.0ms)
+  Rendered contacts/show.json.jbuilder (18.0ms)
+Completed 201 Created in 183ms (Views: 174.8ms | ActiveRecord: 2.0ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 19:04:55 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"contato"}}
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "contato"], ["created_at", "2017-02-12 21:04:55.831297"], ["updated_at", "2017-02-12 21:04:55.831297"]]
+  [1m[36m (11.5ms)[0m  [1mCOMMIT[0m
+  Rendered logs/_log.json.jbuilder (1.0ms)
+  Rendered logs/show.json.jbuilder (24.0ms)
+Completed 201 Created in 302ms (Views: 282.8ms | ActiveRecord: 12.5ms)
+
+
+Started POST "/contacts.json" for 127.0.0.1 at 2017-02-12 19:04:57 -0200
+Processing by ContactsController#create as JSON
+  Parameters: {"contact"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "email"=>"asd@gmail.com"}}
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "contacts" ("cookie", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["email", "asd@gmail.com"], ["created_at", "2017-02-12 21:04:57.039661"], ["updated_at", "2017-02-12 21:04:57.039661"]]
+  [1m[35m (1.0ms)[0m  COMMIT
+  Rendered contacts/_contact.json.jbuilder (0.0ms)
+  Rendered contacts/show.json.jbuilder (13.0ms)
+Completed 201 Created in 185ms (Views: 178.0ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2017-02-12 19:05:02 -0200
+Processing by ContactsController#index as HTML
+  [1m[36mContact Load (1.0ms)[0m  [1mSELECT "contacts".* FROM "contacts"[0m
+  Rendered contacts/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 222ms (Views: 220.3ms | ActiveRecord: 1.0ms)
+  [1m[36mActiveRecord::SchemaMigration Load (6.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to EmailAndCookieUniquesInContact (20170212210843)
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36m (157.2ms)[0m  [1mCREATE UNIQUE INDEX  "index_contacts_on_cookie_and_email" ON "contacts"  ("cookie", "email")[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20170212210843"]]
+  [1m[36m (29.0ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.5ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+  [1m[36m (6.0ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'contacts'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (8.0ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'logs'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+
+
+Started GET "/contacts/3" for 127.0.0.1 at 2017-02-12 19:11:34 -0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ContactsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mContact Load (6.0ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = $1 LIMIT 1  [["id", 3]]
+Completed 404 Not Found in 198ms (ActiveRecord: 15.0ms)
+
+ActiveRecord::RecordNotFound (Couldn't find Contact with 'id'=3):
+  app/controllers/contacts_controller.rb:67:in `set_contact'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (2259.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (2083.2ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (4821.5ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2017-02-12 19:11:44 -0200
+Processing by ContactsController#index as HTML
+  [1m[36mContact Load (0.5ms)[0m  [1mSELECT "contacts".* FROM "contacts"[0m
+  Rendered contacts/index.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 744ms (Views: 743.6ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/contacts.json" for 127.0.0.1 at 2017-02-12 19:11:51 -0200
+Processing by ContactsController#create as JSON
+  Parameters: {"contact"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "email"=>"asd@gmail.com"}}
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mSQL (2.0ms)[0m  [1mINSERT INTO "contacts" ("cookie", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["email", "asd@gmail.com"], ["created_at", "2017-02-12 21:11:51.723518"], ["updated_at", "2017-02-12 21:11:51.723518"]]
+  [1m[35m (16.0ms)[0m  COMMIT
+  Rendered contacts/_contact.json.jbuilder (0.5ms)
+  Rendered contacts/show.json.jbuilder (22.0ms)
+Completed 201 Created in 402ms (Views: 359.5ms | ActiveRecord: 18.5ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2017-02-12 19:11:54 -0200
+Processing by ContactsController#index as HTML
+  [1m[36mContact Load (0.0ms)[0m  [1mSELECT "contacts".* FROM "contacts"[0m
+  Rendered contacts/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 207ms (Views: 206.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/contacts.json" for 127.0.0.1 at 2017-02-12 19:11:57 -0200
+Processing by ContactsController#create as JSON
+  Parameters: {"contact"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "email"=>"asd@gmail.com"}}
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36mSQL (3.0ms)[0m  [1mINSERT INTO "contacts" ("cookie", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["email", "asd@gmail.com"], ["created_at", "2017-02-12 21:11:57.421440"], ["updated_at", "2017-02-12 21:11:57.421440"]]
+  [1m[35m (1.0ms)[0m  ROLLBACK
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 4.5ms)
+
+ActiveRecord::RecordNotUnique (PG::UniqueViolation: ERROR:  duplicate key value violates unique constraint "index_contacts_on_cookie_and_email"
+DETAIL:  Key (cookie, email)=(f9cea996-b255-56f3-1830-97da4bb71f17, asd@gmail.com) already exists.
+: INSERT INTO "contacts" ("cookie", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"):
+  app/controllers/contacts_controller.rb:30:in `block in create'
+  app/controllers/contacts_controller.rb:29:in `create'
+
+
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (0.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (2191.8ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (2026.6ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (1.0ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered C:/Ruby22-x64/lib/ruby/gems/2.2.0/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (4912.2ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2017-02-12 19:12:06 -0200
+Processing by ContactsController#index as HTML
+  [1m[36mContact Load (0.0ms)[0m  [1mSELECT "contacts".* FROM "contacts"[0m
+  Rendered contacts/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 246ms (Views: 245.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/logs" for 127.0.0.1 at 2017-02-12 19:12:44 -0200
+Processing by LogsController#index as HTML
+  [1m[35mLog Load (2.0ms)[0m  SELECT "logs".* FROM "logs"
+  Rendered logs/index.html.erb within layouts/application (30.0ms)
+Completed 200 OK in 255ms (Views: 246.7ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/logs" for 127.0.0.1 at 2017-02-12 19:15:19 -0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by LogsController#index as HTML
+  [1m[35mLog Load (2.0ms)[0m  SELECT "logs".* FROM "logs"
+  Rendered logs/index.html.erb within layouts/application (40.0ms)
+Completed 200 OK in 678ms (Views: 631.7ms | ActiveRecord: 10.0ms)
+
+
+Started GET "/logs" for 127.0.0.1 at 2017-02-12 19:16:21 -0200
+Processing by LogsController#index as HTML
+  [1m[36mLog Load (1.0ms)[0m  [1mSELECT "logs".* FROM "logs"[0m
+  Rendered logs/index.html.erb within layouts/application (23.0ms)
+Completed 200 OK in 322ms (Views: 320.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/logs" for 127.0.0.1 at 2017-02-12 19:17:14 -0200
+Processing by LogsController#index as HTML
+  [1m[35mLog Load (1.0ms)[0m  SELECT "logs".* FROM "logs"
+  Rendered logs/index.html.erb within layouts/application (19.0ms)
+Completed 200 OK in 297ms (Views: 294.9ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/logs" for 127.0.0.1 at 2017-02-12 19:17:35 -0200
+Processing by LogsController#index as HTML
+  [1m[36mLog Load (1.0ms)[0m  [1mSELECT "logs".* FROM "logs"[0m
+  Rendered logs/index.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 226ms (Views: 224.7ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/logs" for 127.0.0.1 at 2017-02-12 19:17:44 -0200
+Processing by LogsController#index as HTML
+  [1m[35mLog Load (1.0ms)[0m  SELECT "logs".* FROM "logs"
+  Rendered logs/index.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 301ms (Views: 299.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/logs" for 127.0.0.1 at 2017-02-12 19:18:16 -0200
+Processing by LogsController#index as HTML
+  [1m[36mLog Load (0.5ms)[0m  [1mSELECT "logs".* FROM "logs"[0m
+  Rendered logs/index.html.erb within layouts/application (10.6ms)
+Completed 200 OK in 226ms (Views: 225.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2017-02-12 19:18:25 -0200
+Processing by ContactsController#index as HTML
+  [1m[35mContact Load (2.0ms)[0m  SELECT "contacts".* FROM "contacts"
+  Rendered contacts/index.html.erb within layouts/application (20.0ms)
+Completed 200 OK in 244ms (Views: 235.6ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2017-02-12 19:19:15 -0200
+Processing by ContactsController#index as HTML
+  [1m[36mContact Load (1.0ms)[0m  [1mSELECT "contacts".* FROM "contacts"[0m
+  Rendered contacts/index.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 254ms (Views: 252.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2017-02-12 19:19:25 -0200
+Processing by ContactsController#index as HTML
+  [1m[35mContact Load (2.0ms)[0m  SELECT "contacts".* FROM "contacts"
+  Rendered contacts/index.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 217ms (Views: 213.9ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2017-02-12 19:19:49 -0200
+Processing by ContactsController#index as HTML
+  [1m[36mContact Load (1.0ms)[0m  [1mSELECT "contacts".* FROM "contacts"[0m
+  Rendered contacts/index.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 208ms (Views: 205.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2017-02-12 19:20:48 -0200
+Processing by ContactsController#index as HTML
+  [1m[35mContact Load (0.5ms)[0m  SELECT "contacts".* FROM "contacts"
+  Rendered contacts/index.html.erb within layouts/application (6.5ms)
+Completed 200 OK in 230ms (Views: 228.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2017-02-12 19:20:58 -0200
+Processing by ContactsController#index as HTML
+  [1m[36mContact Load (0.0ms)[0m  [1mSELECT "contacts".* FROM "contacts"[0m
+  Rendered contacts/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 245ms (Views: 244.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2017-02-12 19:21:14 -0200
+Processing by ContactsController#index as HTML
+  [1m[35mContact Load (0.0ms)[0m  SELECT "contacts".* FROM "contacts"
+  Rendered contacts/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 238ms (Views: 237.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2017-02-12 19:21:36 -0200
+Processing by ContactsController#index as HTML
+  [1m[36mContact Load (1.0ms)[0m  [1mSELECT "contacts".* FROM "contacts"[0m
+  Rendered contacts/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 297ms (Views: 294.4ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/contacts/1" for 127.0.0.1 at 2017-02-12 19:35:12 -0200
+Processing by ContactsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mContact Load (1.0ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered contacts/show.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 251ms (Views: 204.9ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/contacts/1" for 127.0.0.1 at 2017-02-12 19:35:53 -0200
+Processing by ContactsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mContact Load (0.0ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered contacts/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 201ms (Views: 197.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/contacts/1" for 127.0.0.1 at 2017-02-12 19:36:08 -0200
+Processing by ContactsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mContact Load (1.0ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered contacts/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 215ms (Views: 212.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/contacts/1" for 127.0.0.1 at 2017-02-12 19:36:15 -0200
+Processing by ContactsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mContact Load (0.5ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered contacts/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 183ms (Views: 179.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/contacts/1" for 127.0.0.1 at 2017-02-12 19:36:50 -0200
+Processing by ContactsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mContact Load (0.0ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered contacts/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 189ms (Views: 186.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/contacts/1" for 127.0.0.1 at 2017-02-12 19:40:19 -0200
+Processing by ContactsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mContact Load (0.5ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered contacts/show.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 218ms (Views: 194.4ms | ActiveRecord: 6.0ms)
+
+
+Started GET "/contacts/1" for 127.0.0.1 at 2017-02-12 19:41:02 -0200
+Processing by ContactsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mContact Load (0.0ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mLog Load (0.5ms)[0m  [1mSELECT "logs".* FROM "logs" WHERE "logs"."cookie" = $1[0m  [["cookie", "1234"]]
+  Rendered contacts/show.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 192ms (Views: 187.4ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2017-02-12 19:41:10 -0200
+Processing by ContactsController#index as HTML
+  [1m[35mContact Load (1.0ms)[0m  SELECT "contacts".* FROM "contacts"
+  Rendered contacts/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 189ms (Views: 186.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/contacts/9" for 127.0.0.1 at 2017-02-12 19:41:13 -0200
+Processing by ContactsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mContact Load (1.0ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mLog Load (1.0ms)[0m  SELECT "logs".* FROM "logs" WHERE "logs"."cookie" = $1  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"]]
+  Rendered contacts/show.html.erb within layouts/application (9.8ms)
+Completed 200 OK in 188ms (Views: 185.5ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2017-02-12 19:41:20 -0200
+Processing by ContactsController#index as HTML
+  [1m[36mContact Load (1.0ms)[0m  [1mSELECT "contacts".* FROM "contacts"[0m
+  Rendered contacts/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 162ms (Views: 160.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/contacts/1" for 127.0.0.1 at 2017-02-12 19:41:23 -0200
+Processing by ContactsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mContact Load (0.5ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mLog Load (1.0ms)[0m  [1mSELECT "logs".* FROM "logs" WHERE "logs"."cookie" = $1[0m  [["cookie", "1234"]]
+  Rendered contacts/show.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 182ms (Views: 179.5ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/contacts/1" for 127.0.0.1 at 2017-02-12 19:41:28 -0200
+Processing by ContactsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mContact Load (1.0ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mLog Load (1.0ms)[0m  [1mSELECT "logs".* FROM "logs" WHERE "logs"."cookie" = $1[0m  [["cookie", "1234"]]
+  Rendered contacts/show.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 192ms (Views: 188.8ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2017-02-12 19:41:32 -0200
+Processing by ContactsController#index as HTML
+  [1m[35mContact Load (1.0ms)[0m  SELECT "contacts".* FROM "contacts"
+  Rendered contacts/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 195ms (Views: 193.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/contacts/9" for 127.0.0.1 at 2017-02-12 19:41:34 -0200
+Processing by ContactsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mContact Load (0.5ms)[0m  [1mSELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = $1 LIMIT 1[0m  [["id", 9]]
+  [1m[35mLog Load (1.0ms)[0m  SELECT "logs".* FROM "logs" WHERE "logs"."cookie" = $1  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"]]
+  Rendered contacts/show.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 171ms (Views: 166.6ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2017-02-12 19:41:38 -0200
+Processing by ContactsController#index as HTML
+  [1m[36mContact Load (0.0ms)[0m  [1mSELECT "contacts".* FROM "contacts"[0m
+  Rendered contacts/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 173ms (Views: 172.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2017-02-12 19:42:29 -0200
+Processing by ContactsController#index as HTML
+  [1m[35mContact Load (0.0ms)[0m  SELECT "contacts".* FROM "contacts"
+  Rendered contacts/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 174ms (Views: 173.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/logs" for 127.0.0.1 at 2017-02-12 19:42:32 -0200
+Processing by LogsController#index as HTML
+  [1m[36mLog Load (1.0ms)[0m  [1mSELECT "logs".* FROM "logs"[0m
+  Rendered logs/index.html.erb within layouts/application (9.0ms)
+Completed 200 OK in 184ms (Views: 181.6ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/logs" for 127.0.0.1 at 2017-02-12 19:43:01 -0200
+Processing by LogsController#index as HTML
+  [1m[35mLog Load (1.0ms)[0m  SELECT "logs".* FROM "logs"
+  Rendered logs/index.html.erb within layouts/application (11.5ms)
+Completed 200 OK in 179ms (Views: 178.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2017-02-12 19:43:03 -0200
+Processing by ContactsController#index as HTML
+  [1m[36mContact Load (1.0ms)[0m  [1mSELECT "contacts".* FROM "contacts"[0m
+  Rendered contacts/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 164ms (Views: 162.2ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/logs" for 127.0.0.1 at 2017-02-12 19:43:04 -0200
+Processing by LogsController#index as HTML
+  [1m[35mLog Load (1.0ms)[0m  SELECT "logs".* FROM "logs"
+  Rendered logs/index.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 203ms (Views: 200.5ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2017-02-12 19:43:05 -0200
+Processing by ContactsController#index as HTML
+  [1m[36mContact Load (1.0ms)[0m  [1mSELECT "contacts".* FROM "contacts"[0m
+  Rendered contacts/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 171ms (Views: 169.4ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/contacts/1" for 127.0.0.1 at 2017-02-12 19:43:10 -0200
+Processing by ContactsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mContact Load (1.0ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mLog Load (0.0ms)[0m  [1mSELECT "logs".* FROM "logs" WHERE "logs"."cookie" = $1[0m  [["cookie", "1234"]]
+  Rendered contacts/show.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 260ms (Views: 258.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/contacts/1" for 127.0.0.1 at 2017-02-12 19:45:17 -0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ContactsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mContact Load (1.5ms)[0m  SELECT  "contacts".* FROM "contacts" WHERE "contacts"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mLog Load (3.0ms)[0m  [1mSELECT "logs".* FROM "logs" WHERE "logs"."cookie" = $1[0m  [["cookie", "1234"]]
+  Rendered contacts/show.html.erb within layouts/application (14.5ms)
+Completed 200 OK in 526ms (Views: 447.7ms | ActiveRecord: 13.6ms)
+
+
+Started GET "/contacts" for 127.0.0.1 at 2017-02-12 19:45:21 -0200
+Processing by ContactsController#index as HTML
+  [1m[35mContact Load (1.0ms)[0m  SELECT "contacts".* FROM "contacts"
+  Rendered contacts/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 186ms (Views: 183.8ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/logs" for 127.0.0.1 at 2017-02-12 19:45:25 -0200
+Processing by LogsController#index as HTML
+  [1m[36mLog Load (0.5ms)[0m  [1mSELECT "logs".* FROM "logs"[0m
+  Rendered logs/index.html.erb within layouts/application (10.5ms)
+Completed 200 OK in 201ms (Views: 199.0ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 19:45:42 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"home"}}
+  [1m[35m (1.0ms)[0m  BEGIN
+  [1m[36mSQL (2.0ms)[0m  [1mINSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "home"], ["created_at", "2017-02-12 21:45:42.307073"], ["updated_at", "2017-02-12 21:45:42.307073"]]
+  [1m[35m (23.0ms)[0m  COMMIT
+  Rendered logs/_log.json.jbuilder (2.0ms)
+  Rendered logs/show.json.jbuilder (46.0ms)
+Completed 201 Created in 300ms (Views: 258.7ms | ActiveRecord: 26.0ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 19:45:43 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"contato"}}
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.0ms)[0m  INSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "contato"], ["created_at", "2017-02-12 21:45:43.627229"], ["updated_at", "2017-02-12 21:45:43.627229"]]
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  Rendered logs/_log.json.jbuilder (0.5ms)
+  Rendered logs/show.json.jbuilder (18.5ms)
+Completed 201 Created in 232ms (Views: 223.7ms | ActiveRecord: 1.0ms)
+
+
+Started POST "/logs.json" for 127.0.0.1 at 2017-02-12 19:45:47 -0200
+Processing by LogsController#create as JSON
+  Parameters: {"log"=>{"cookie"=>"f9cea996-b255-56f3-1830-97da4bb71f17", "page"=>"sobre"}}
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "logs" ("cookie", "page", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["cookie", "f9cea996-b255-56f3-1830-97da4bb71f17"], ["page", "sobre"], ["created_at", "2017-02-12 21:45:47.402826"], ["updated_at", "2017-02-12 21:45:47.402826"]]
+  [1m[35m (5.0ms)[0m  COMMIT
+  Rendered logs/_log.json.jbuilder (0.0ms)
+  Rendered logs/show.json.jbuilder (18.0ms)
+Completed 201 Created in 209ms (Views: 198.2ms | ActiveRecord: 6.0ms)
