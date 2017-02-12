@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Cookie:</strong>
+  <%= @log.cookie %>
+</p>
+
+<p>
+  <strong>Page:</strong>
+  <%= @log.page %>
+</p>
+
+<p>
+  <strong>When:</strong>
+  <%= @log.when %>
+</p>
+
+<%= link_to 'Edit', edit_log_path(@log) %> |
+<%= link_to 'Back', logs_path %>
