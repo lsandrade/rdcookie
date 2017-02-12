@@ -10,6 +10,7 @@ class ContactsController < ApplicationController
   # GET /contacts/1
   # GET /contacts/1.json
   def show
+    @logs = Log.where(cookie: @contact.cookie)
   end
 
   # GET /contacts/new

@@ -1,14 +1,34 @@
 <p id="notice"><%= notice %></p>
+<div class="container">
+  <p>
+    <strong>Cookie:</strong>
+    <%= @contact.cookie %>
+  </p>
 
-<p>
-  <strong>Cookie:</strong>
-  <%= @contact.cookie %>
-</p>
+  <p>
+    <strong>Email:</strong>
+    <%= @contact.email %>
+  </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @contact.email %>
-</p>
+  <%= link_to 'Back', contacts_path %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Cookie</th>
+      <th>Page</th>
+      <th>When</th>
 
-<%= link_to 'Edit', edit_contact_path(@contact) %> |
-<%= link_to 'Back', contacts_path %>
+    </tr>
+  </thead>
+  <tbody>
+    <% @logs.each do |log| %>
+      <tr>
+        <td><%= log.cookie %></td>
+        <td><%= log.page %></td>
+        <td><%= log.created_at %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
