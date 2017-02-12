@@ -2615,3 +2615,18 @@ Processing by LogsController#create as JSON
   Rendered logs/_log.json.jbuilder (0.0ms)
   Rendered logs/show.json.jbuilder (18.0ms)
 Completed 201 Created in 209ms (Views: 198.2ms | ActiveRecord: 6.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-02-12 21:42:44 -0200
+  [1m[36mActiveRecord::SchemaMigration Load (1.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ContactsController#index as HTML
+  [1m[35mContact Load (2.0ms)[0m  SELECT "contacts".* FROM "contacts"
+  Rendered contacts/index.html.erb within layouts/application (34.0ms)
+Completed 200 OK in 762ms (Views: 697.3ms | ActiveRecord: 8.5ms)
+
+
+Started GET "/logs" for 127.0.0.1 at 2017-02-12 21:42:50 -0200
+Processing by LogsController#index as HTML
+  [1m[36mLog Load (1.0ms)[0m  [1mSELECT "logs".* FROM "logs"[0m
+  Rendered logs/index.html.erb within layouts/application (16.0ms)
+Completed 200 OK in 229ms (Views: 220.5ms | ActiveRecord: 5.0ms)
