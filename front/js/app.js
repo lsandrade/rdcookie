@@ -23,3 +23,12 @@ function verifyCookies(){
     console.log(Cookies.get('name'));
   }
 }
+
+function sendCookies(page){
+  console.log('page: '+page+'. cookie: '+Cookies.get('name')+'.')
+}
+
+function sendEmail(){
+  console.log(document.getElementById('email').value);
+  console.log('a')
+}
