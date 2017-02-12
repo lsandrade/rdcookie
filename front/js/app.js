@@ -24,8 +24,19 @@ function verifyCookies(){
   }
 }
 
-function sendCookies(page){
-  console.log('page: '+page+'. cookie: '+Cookies.get('name')+'.')
+function sendCookies(address){
+  var person = { cookie: Cookies.get('name'),
+                  page: address };
+  $.ajax({
+            url: 'http://127.0.0.1:3000/logs.json',
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+                console.log(data);
+            },
+            data: person
+        });
+
 }
 
 function sendEmail(){
