@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170212181422) do
+ActiveRecord::Schema.define(version: 20170212182904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(version: 20170212181422) do
   create_table "logs", force: :cascade do |t|
     t.text     "cookie"
     t.text     "page"
-    t.datetime "when"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
