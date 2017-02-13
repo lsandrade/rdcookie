@@ -84,6 +84,8 @@ test:
 #
 production:
   <<: *default
-  database: back_production
-  username: back
-  password: <%= ENV['BACK_DATABASE_PASSWORD'] %>
+  host: ec2-50-17-220-223.compute-1.amazonaws.com
+  database: dcs0eq6hia5cks
+  username: lzzraufsanzuyy
+  password: 316af3acff14d999d5568c87ccf8a5f2134814893d65c07384ccb37f3f96a328
+  
