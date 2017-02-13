@@ -48,3 +48,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #Heroku
 gem 'rails_12factor', group: :production
+
+group :development, :test do
+  # gem RSPEC to test code
+  gem 'rspec-rails', '~>3.0'
+end
